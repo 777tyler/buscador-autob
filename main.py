@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import random
 
 app = FastAPI()
 
-# Este es el "Pase VIP" que deja que tu WordPress se conecte al robot
+# Esto permite que tu WordPress se comunique con el servidor
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -13,11 +12,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def inicio():
+    return {"mensaje": "Servidor de Auto B funcionando"}
+
 @app.get("/buscar/{patente}")
-def buscar_patente(patente: str):
-    return {
+def buscar_auto(patente: str):
+    # Datos de prueba para tu marketplace
+    datos_falsos = {
         "patente": patente.upper(),
-        "Carabineros_Robo": random.choice(["Limpio", "Alerta"]),
-        "PRT_Revision": random.choice(["Aprobada", "Rechazada"]),
-        "MTT_Transporte": random.choice(["Particular", "Ex-Taxi"])
+        "Carabineros_Robo": "Sin encargo vigente",
+        "PRT_Revision": "Al día (Vence Oct 2026)",
+        "MTT_Transporte": "Particular (Auto bueno y andando)"
     }
+    return datos_falsos
