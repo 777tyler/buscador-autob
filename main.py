@@ -38,3 +38,15 @@ def buscar_auto(patente: str):
         "recalls": "⚠️ 1 pendiente (Falla Airbag)",
         "ventas": "🔍 Hallada en Facebook (2024) - $7.2M"
     }
+# ... (Mantén la lógica de FastAPI y CORS igual)
+@app.get("/buscar/{patente}")
+def buscar_auto(patente: str):
+    return {
+        "patente": patente.upper(),
+        "robo": "✅ Limpio (Sin encargo)",
+        "prt": "📅 Al día (Vence Oct 2026)",
+        "km": "📈 Historial: 85.000 km (Consistente)",
+        "tag": "💸 Deuda TAG: $0 (Sin pendientes)",
+        "recalls": "⚠️ 1 pendiente (Falla Airbag)",
+        "ventas": "🔍 Hallada en Facebook (2024) - $7.2M"
+    }
